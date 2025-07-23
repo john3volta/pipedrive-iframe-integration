@@ -1,5 +1,17 @@
 <template>
+  <textarea 
+    v-if="type === 'textarea'"
+    class="form-field__input form-field__input--large"
+    :id="name"
+    :name="name"
+    :value="modelValue"
+    @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+    :required="required"
+    :placeholder="placeholder"
+    :autocomplete="autocomplete"
+  />
   <input 
+    v-else
     class="form-field__input" 
     :id="name"
     :name="name"
