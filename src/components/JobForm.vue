@@ -2,8 +2,12 @@
   <div class="form">
     <div class="form__container">
       <ClientDetails />
-      <JobDetails />
-      <ServiceLocation />
+      <JobDetails 
+        :job-types="jobTypes"
+        :job-sources="jobSources"
+        :technicians="technicians"
+      />
+      <ServiceLocation :area-options="areaOptions" />
       <Scheduled />
     </div>
     <div class="form__actions">
@@ -14,5 +18,5 @@
 </template>
 
 <script setup lang="ts">
-// Form logic
+import { jobTypes, jobSources, areaOptions, technicians } from '../data/formOptions'
 </script> 
