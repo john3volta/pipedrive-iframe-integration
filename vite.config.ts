@@ -8,12 +8,5 @@ export default defineConfig({
   },
   build: {
     target: 'es2020'
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "./src/styles/_variables.scss";`
-      }
-    }
   }
 }) 
