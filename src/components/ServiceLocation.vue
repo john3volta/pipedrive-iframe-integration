@@ -14,7 +14,7 @@
         <FormInput v-model="zipCode" name="zipCode" type="text" placeholder="Zip code" autocomplete="postal-code" required />
       </FormField>
       <FormField>
-        <FormSelect v-model="area" :options="props.areaOptions" placeholder="Select area" required />
+        <FormSelect v-model="area" name="area" :options="props.areaOptions" placeholder="Select area" required />
       </FormField>
     </div>
   </FormSection>

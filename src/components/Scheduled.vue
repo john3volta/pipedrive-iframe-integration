@@ -12,7 +12,7 @@
       </FormField>
     </div>
     <FormField>
-      <FormSelect v-model="selectedTechnician" :options="availableTechnicians" placeholder="Select technician" required />
+      <FormSelect v-model="selectedTechnician" name="technician" :options="availableTechnicians" placeholder="Select technician" required />
     </FormField>
   </FormSection>
 </template>

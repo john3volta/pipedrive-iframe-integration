@@ -1,6 +1,8 @@
 <template>
   <select 
     class="form-field__input" 
+    :id="name"
+    :name="name"
     :value="modelValue"
     @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
     :required="required"
@@ -24,6 +26,7 @@ interface Option {
 
 interface Props {
   modelValue: string
+  name?: string
   options: Option[]
   required?: boolean
   placeholder?: string
