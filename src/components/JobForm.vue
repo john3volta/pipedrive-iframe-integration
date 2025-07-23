@@ -5,10 +5,13 @@
       <JobDetails 
         :job-types="jobTypes"
         :job-sources="jobSources"
-        :technicians="technicians"
+        @update:job-type="jobType = $event"
       />
       <ServiceLocation :area-options="areaOptions" />
-      <Scheduled />
+      <Scheduled 
+        :job-type="jobType"
+        :technicians="technicians"
+      />
     </div>
     <div class="form__actions">
       <button class="form__btn form__btn--create">Create Job</button>
@@ -18,5 +21,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { jobTypes, jobSources, areaOptions, technicians } from '../data/formOptions'
+
+const jobType = ref('')
 </script> 

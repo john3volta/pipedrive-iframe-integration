@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import FormSection from './FormSection.vue'
 import FormField from './FormField.vue'
 import FormSelect from './FormSelect.vue'
@@ -33,7 +33,15 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const emit = defineEmits<{
+  'update:jobType': [value: string]
+}>()
+
 const jobType = ref('')
 const jobSource = ref('')
 const description = ref('')
+
+watch(jobType, (newValue) => {
+  emit('update:jobType', newValue)
+})
 </script> 

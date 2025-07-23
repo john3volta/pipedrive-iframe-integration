@@ -11,14 +11,14 @@
         <FormInput type="time" v-model="endTime" required />
       </FormField>
     </div>
-    <FormField label="Test select">
-      <FormSelect v-model="testSelect" :options="props.testOptions" placeholder="Select option" required />
+    <FormField label="Technician">
+      <FormSelect v-model="selectedTechnician" :options="availableTechnicians" placeholder="Select technician" required />
     </FormField>
   </FormSection>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import FormSection from './FormSection.vue'
 import FormField from './FormField.vue'
 import FormInput from './FormInput.vue'
@@ -30,7 +30,8 @@ interface Option {
 }
 
 interface Props {
-  testOptions: Option[]
+  jobType: string
+  technicians: Record<string, Option[]>
 }
 
 const props = defineProps<Props>()
@@ -38,5 +39,10 @@ const props = defineProps<Props>()
 const startDate = ref('')
 const startTime = ref('')
 const endTime = ref('')
-const testSelect = ref('')
+const selectedTechnician = ref('')
+
+const availableTechnicians = computed(() => {
+  if (!props.jobType) return []
+  return props.technicians[props.jobType] || []
+})
 </script> 
