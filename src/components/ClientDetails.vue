@@ -1,17 +1,17 @@
 <template>
   <FormSection title="Client details">
     <div class="form-row">
-      <FormField label="First name">
+      <FormField>
         <FormInput v-model="firstName" type="text" placeholder="First name" required />
       </FormField>
-      <FormField label="Last name">
+      <FormField>
         <FormInput v-model="lastName" type="text" placeholder="Last name" required />
       </FormField>
     </div>
-    <FormField label="Phone">
+    <FormField>
       <FormInput v-model="phone" type="tel" placeholder="Phone" required />
     </FormField>
-    <FormField label="Email (optional)">
+    <FormField>
       <FormInput v-model="email" type="email" placeholder="Email (optional)" />
     </FormField>
   </FormSection>

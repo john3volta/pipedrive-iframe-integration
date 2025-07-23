@@ -1,17 +1,17 @@
 <template>
   <FormSection title="Scheduled">
-    <FormField label="Start date">
+    <FormField>
       <FormInput type="date" v-model="startDate" required />
     </FormField>
     <div class="form-row">
-      <FormField label="Start time">
+      <FormField>
         <FormInput type="time" v-model="startTime" required />
       </FormField>
-      <FormField label="End time">
+      <FormField>
         <FormInput type="time" v-model="endTime" required />
       </FormField>
     </div>
-    <FormField label="Technician">
+    <FormField>
       <FormSelect v-model="selectedTechnician" :options="availableTechnicians" placeholder="Select technician" required />
     </FormField>
   </FormSection>

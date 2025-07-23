@@ -1,19 +1,19 @@
 <template>
   <FormSection title="Service location">
-    <FormField label="Address">
+    <FormField>
       <FormInput v-model="address" type="text" placeholder="Address" required />
     </FormField>
-    <FormField label="City">
+    <FormField>
       <FormInput v-model="city" type="text" placeholder="City" required />
     </FormField>
-    <FormField label="State">
+    <FormField>
       <FormInput v-model="state" type="text" placeholder="State" required />
     </FormField>
     <div class="form-row">
-      <FormField label="Zip code">
+      <FormField>
         <FormInput v-model="zipCode" type="text" placeholder="Zip code" required />
       </FormField>
-      <FormField label="Area">
+      <FormField>
         <FormSelect v-model="area" :options="props.areaOptions" placeholder="Select area" required />
       </FormField>
     </div>

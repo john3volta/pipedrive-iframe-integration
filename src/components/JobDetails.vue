@@ -1,14 +1,14 @@
 <template>
   <FormSection title="Job details">
     <div class="form-row">
-      <FormField label="Job type">
+      <FormField>
         <FormSelect v-model="jobType" :options="props.jobTypes" placeholder="Select job type" required />
       </FormField>
-      <FormField label="Job source">
+      <FormField>
         <FormSelect v-model="jobSource" :options="props.jobSources" placeholder="Select source" required />
       </FormField>
     </div>
-    <FormField label="Job description (optional)">
+    <FormField>
       <FormInput v-model="description" class="form-field__input--large" placeholder="Job description (optional)" />
     </FormField>
   </FormSection>
