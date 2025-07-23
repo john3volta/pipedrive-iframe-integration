@@ -1,17 +1,17 @@
 <template>
   <FormSection title="Service location">
     <FormField>
-      <FormInput v-model="address" type="text" placeholder="Address" required />
+      <FormInput v-model="address" name="address" type="text" placeholder="Address" autocomplete="street-address" required />
     </FormField>
     <FormField>
-      <FormInput v-model="city" type="text" placeholder="City" required />
+      <FormInput v-model="city" name="city" type="text" placeholder="City" autocomplete="address-level2" required />
     </FormField>
     <FormField>
-      <FormInput v-model="state" type="text" placeholder="State" required />
+      <FormInput v-model="state" name="state" type="text" placeholder="State" autocomplete="address-level1" required />
     </FormField>
     <div class="form-row">
       <FormField>
-        <FormInput v-model="zipCode" type="text" placeholder="Zip code" required />
+        <FormInput v-model="zipCode" name="zipCode" type="text" placeholder="Zip code" autocomplete="postal-code" required />
       </FormField>
       <FormField>
         <FormSelect v-model="area" :options="props.areaOptions" placeholder="Select area" required />

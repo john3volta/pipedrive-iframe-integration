@@ -2,17 +2,17 @@
   <FormSection title="Client details">
     <div class="form-row">
       <FormField>
-        <FormInput v-model="firstName" type="text" placeholder="First name" required />
+        <FormInput v-model="firstName" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required />
       </FormField>
       <FormField>
-        <FormInput v-model="lastName" type="text" placeholder="Last name" required />
+        <FormInput v-model="lastName" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required />
       </FormField>
     </div>
     <FormField>
-      <FormInput v-model="phone" type="tel" placeholder="Phone" required />
+      <FormInput v-model="phone" name="phone" type="tel" placeholder="Phone" autocomplete="tel" required />
     </FormField>
     <FormField>
-      <FormInput v-model="email" type="email" placeholder="Email (optional)" />
+      <FormInput v-model="email" name="email" type="email" placeholder="Email (optional)" autocomplete="email" />
     </FormField>
   </FormSection>
 </template>

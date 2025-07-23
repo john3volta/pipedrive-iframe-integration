@@ -9,7 +9,7 @@
       </FormField>
     </div>
     <FormField>
-      <FormInput v-model="description" class="form-field__input--large" placeholder="Job description (optional)" />
+      <FormInput v-model="description" name="description" class="form-field__input--large" placeholder="Job description (optional)" />
     </FormField>
   </FormSection>
 </template>
