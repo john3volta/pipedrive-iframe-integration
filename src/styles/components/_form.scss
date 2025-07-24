@@ -81,9 +81,14 @@
   font-size: rem-calc(12);
   background-color: $color-bg;
   line-height: 1;
+  transition: border-color 0.2s ease;
 
   &:focus-within {
     border-color: rgba($color-secondary, 0.5);
+  }
+  
+  &--error {
+    border-color: rgba($color-error, 0.3);
   }
 }
 

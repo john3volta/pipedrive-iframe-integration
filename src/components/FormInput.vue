@@ -5,7 +5,8 @@
     :id="name"
     :name="name"
     :value="modelValue"
-    @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+    @input="handleInput"
+    @blur="handleBlur"
     :required="required"
     :placeholder="placeholder"
     :autocomplete="autocomplete"
@@ -21,6 +22,7 @@
     @input="handleInput"
     @paste="handlePaste"
     @click="handleInputClick"
+    @blur="handleBlur"
     :required="required"
     :placeholder="placeholder"
     :autocomplete="autocomplete"
@@ -29,6 +31,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch, inject, onMounted } from 'vue'
+import { useFormValidation } from '../utils/useFormValidation'
+
+interface ValidationHandler {
+  handleValidation: (isValid: boolean) => void
+  forceValidation?: () => void
+}
+
 interface Props {
   modelValue: string
   name?: string
@@ -38,10 +48,54 @@ interface Props {
   autocomplete?: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
+
+const isTouched = ref(false)
+const { registerInput } = useFormValidation()
+
+const parentFormField = inject<ValidationHandler | null>('formFieldRef', null)
+
+const validate = (force = false) => {
+  if (!props.required) {
+    parentFormField?.handleValidation?.(true)
+    return
+  }
+  
+  let isValid = false
+  
+  if (props.type === 'tel') {
+    const digits = props.modelValue.replace(/\D/g, '')
+    isValid = digits.length >= 10
+  } else {
+    isValid = props.modelValue.trim().length > 0
+  }
+  
+  if (isTouched.value || force) {
+    parentFormField?.handleValidation?.(isValid)
+  }
+}
+
+const handleBlur = () => {
+  isTouched.value = true
+  validate()
+}
+
+const forceValidation = () => {
+  validate(true)
+}
+
+defineExpose({
+  forceValidation
+})
+
+onMounted(() => {
+  if (props.required) {
+    registerInput({ forceValidation })
+  }
+})
 
 const validateName = (value: string) => {
   const cleaned = value.replace(/[^a-zA-Zа-яА-Я\s-]/g, '')
@@ -78,6 +132,10 @@ const handleInput = (event: Event) => {
   }
   
   emit('update:modelValue', value)
+  
+  if (isTouched.value) {
+    validate()
+  }
 }
 
 const handlePaste = (event: ClipboardEvent) => {
@@ -103,4 +161,6 @@ const handleInputClick = (event: Event) => {
     }, 100)
   }
 }
+
+watch(() => props.modelValue, () => validate(), { immediate: true })
 </script> 
