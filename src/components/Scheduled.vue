@@ -12,7 +12,14 @@
       </FormField>
     </div>
     <FormField>
-      <FormSelect v-model="selectedTechnician" name="technician" :options="availableTechnicians" placeholder="Select technician" required />
+      <FormSelect 
+        v-model="selectedTechnician" 
+        name="technician" 
+        :options="availableTechnicians" 
+        placeholder="Select technician" 
+        :disabled="!props.jobType"
+        required 
+      />
     </FormField>
   </FormSection>
 </template>

@@ -12,7 +12,7 @@
   />
   <input 
     v-else
-    class="form-field__input" 
+    :class="['form-field__input', type === 'date' ? 'form-field__date' : '', type === 'time' ? 'form-field__time' : '']"
     :id="name"
     :name="name"
     :type="type"
