@@ -2,10 +2,22 @@
   <FormSection title="Job details">
     <div class="form-row">
       <FormField>
-        <FormSelect v-model="jobType" name="jobType" :options="props.jobTypes" placeholder="Select job type" required />
+        <FormSelect 
+          v-model="jobType" 
+          name="jobType" 
+          :options="props.jobTypes" 
+          placeholder="Select job type" 
+          required 
+        />
       </FormField>
       <FormField>
-        <FormSelect v-model="jobSource" name="jobSource" :options="props.jobSources" placeholder="Select source" required />
+        <FormSelect 
+          v-model="jobSource" 
+          name="jobSource" 
+          :options="props.jobSources" 
+          placeholder="Select source" 
+          required 
+        />
       </FormField>
     </div>
     <FormField>
