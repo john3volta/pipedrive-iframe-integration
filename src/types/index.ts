@@ -23,7 +23,7 @@ export interface Scheduled {
   startDate: string
   startTime: string
   endTime: string
-  testSelect: string
+  technician: string
 }
 
 export interface JobFormData {

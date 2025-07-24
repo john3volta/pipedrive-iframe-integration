@@ -77,4 +77,12 @@ const city = ref('')
 const state = ref('')
 const zipCode = ref('')
 const area = ref('')
+
+defineExpose({
+  address,
+  city,
+  state,
+  zipCode,
+  area
+})
 </script> 

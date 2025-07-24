@@ -48,4 +48,11 @@ const firstName = ref('')
 const lastName = ref('')
 const phone = ref('')
 const email = ref('')
+
+defineExpose({
+  firstName,
+  lastName,
+  phone,
+  email
+})
 </script> 

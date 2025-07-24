@@ -73,4 +73,11 @@ const availableTechnicians = computed(() => {
   if (!props.jobType) return []
   return props.technicians[props.jobType] || []
 })
+
+defineExpose({
+  startDate,
+  startTime,
+  endTime,
+  selectedTechnician
+})
 </script> 

@@ -56,4 +56,10 @@ const description = ref('')
 watch(jobType, (newValue) => {
   emit('update:jobType', newValue)
 })
+
+defineExpose({
+  jobType,
+  jobSource,
+  description
+})
 </script> 
