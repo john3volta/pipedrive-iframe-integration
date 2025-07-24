@@ -1,14 +1,16 @@
 <template>
   <div class="form">
     <div class="form__container">
-      <ClientDetails />
+      <ClientDetails ref="clientDetailsRef" />
       <JobDetails 
+        ref="jobDetailsRef"
         :job-types="jobTypes"
         :job-sources="jobSources"
         @update:job-type="jobType = $event"
       />
-      <ServiceLocation :area-options="areaOptions" />
+      <ServiceLocation ref="serviceLocationRef" :area-options="areaOptions" />
       <Scheduled 
+        ref="scheduledRef"
         :job-type="jobType"
         :technicians="technicians"
       />
@@ -23,17 +25,30 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { jobTypes, jobSources, areaOptions, technicians } from '../data/formOptions'
-import { useFormValidation } from '../utils/useFormValidation'
 import ClientDetails from './ClientDetails.vue'
 import JobDetails from './JobDetails.vue'
 import ServiceLocation from './ServiceLocation.vue'
 import Scheduled from './Scheduled.vue'
 
 const jobType = ref('')
-const { validateAll } = useFormValidation()
+
+const clientDetailsRef = ref()
+const jobDetailsRef = ref()
+const serviceLocationRef = ref()
+const scheduledRef = ref()
 
 const handleCreateJob = () => {
-  validateAll()
+  const components = [clientDetailsRef, jobDetailsRef, serviceLocationRef, scheduledRef]
+  
+  components.forEach(component => {
+    if (component.value) {
+      const inputs = component.value.$el?.querySelectorAll('input[required], select[required]')
+      inputs?.forEach((input: HTMLElement) => {
+        input.dispatchEvent(new Event('blur'))
+      })
+    }
+  })
+  
   console.log('Creating job...')
 }
 </script> 

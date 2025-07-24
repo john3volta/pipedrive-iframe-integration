@@ -31,12 +31,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, inject, onMounted } from 'vue'
-import { useFormValidation } from '../utils/useFormValidation'
+import { ref, watch, inject } from 'vue'
 
 interface ValidationHandler {
   handleValidation: (isValid: boolean) => void
-  forceValidation?: () => void
 }
 
 interface Props {
@@ -51,16 +49,16 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits<{
   'update:modelValue': [value: string]
+  'validation': [isValid: boolean]
 }>()
 
 const isTouched = ref(false)
-const { registerInput } = useFormValidation()
-
 const parentFormField = inject<ValidationHandler | null>('formFieldRef', null)
 
 const validate = (force = false) => {
   if (!props.required) {
     parentFormField?.handleValidation?.(true)
+    emit('validation', true)
     return
   }
   
@@ -75,6 +73,7 @@ const validate = (force = false) => {
   
   if (isTouched.value || force) {
     parentFormField?.handleValidation?.(isValid)
+    emit('validation', isValid)
   }
 }
 
@@ -82,20 +81,6 @@ const handleBlur = () => {
   isTouched.value = true
   validate()
 }
-
-const forceValidation = () => {
-  validate(true)
-}
-
-defineExpose({
-  forceValidation
-})
-
-onMounted(() => {
-  if (props.required) {
-    registerInput({ forceValidation })
-  }
-})
 
 const validateName = (value: string) => {
   const cleaned = value.replace(/[^a-zA-Zа-яА-Я\s-]/g, '')

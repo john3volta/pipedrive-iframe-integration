@@ -27,12 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, inject, onMounted } from 'vue'
-import { useFormValidation } from '../utils/useFormValidation'
+import { ref, computed, watch, inject } from 'vue'
 
 interface ValidationHandler {
   handleValidation: (isValid: boolean) => void
-  forceValidation?: () => void
 }
 
 interface Option {
@@ -52,17 +50,17 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits<{
   'update:modelValue': [value: string]
+  'validation': [isValid: boolean]
 }>()
 
 const isOpen = ref(false)
 const isTouched = ref(false)
-const { registerSelect } = useFormValidation()
-
 const parentFormField = inject<ValidationHandler | null>('formFieldRef', null)
 
 const validate = (force = false) => {
   if (!props.required) {
     parentFormField?.handleValidation?.(true)
+    emit('validation', true)
     return
   }
   
@@ -70,6 +68,7 @@ const validate = (force = false) => {
   
   if (isTouched.value || force) {
     parentFormField?.handleValidation?.(isValid)
+    emit('validation', isValid)
   }
 }
 
@@ -80,20 +79,6 @@ const handleBlur = () => {
     isOpen.value = false
   }, 150)
 }
-
-const forceValidation = () => {
-  validate(true)
-}
-
-defineExpose({
-  forceValidation
-})
-
-onMounted(() => {
-  if (props.required) {
-    registerSelect({ forceValidation })
-  }
-})
 
 window.addEventListener('closeAllDropdowns', () => {
   if (isOpen.value) {
