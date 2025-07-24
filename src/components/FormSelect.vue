@@ -5,7 +5,7 @@
         class="select__button"
         @blur="handleBlur"
       >
-        <span class="select__value">
+        <span class="select__value" :class="{ 'select__value--selected': selectedLabel }">
           {{ selectedLabel || placeholder || 'Select option' }}
         </span>
         <svg class="select__arrow" viewBox="0 0 24 24" width="16" height="16">
