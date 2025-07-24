@@ -42,9 +42,18 @@ const handleCreateJob = () => {
   
   components.forEach(component => {
     if (component.value) {
-      const inputs = component.value.$el?.querySelectorAll('input[required], select[required]')
+      const inputs = component.value.$el?.querySelectorAll('input[required]')
+      const selects = component.value.$el?.querySelectorAll('.select')
+      
       inputs?.forEach((input: HTMLElement) => {
         input.dispatchEvent(new Event('blur'))
+      })
+      
+      selects?.forEach((select: HTMLElement) => {
+        const button = select.querySelector('button')
+        if (button) {
+          button.dispatchEvent(new Event('blur'))
+        }
       })
     }
   })
