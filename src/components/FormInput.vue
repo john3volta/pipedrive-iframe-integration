@@ -1,7 +1,7 @@
 <template>
   <textarea 
     v-if="type === 'textarea'"
-    class="form-field__input form-field__input--large"
+    class="input input--large"
     :id="name"
     :name="name"
     :value="modelValue"
@@ -13,7 +13,7 @@
   />
   <input 
     v-else
-    :class="['form-field__input', type === 'date' ? 'form-field__date' : '', type === 'time' ? 'form-field__time' : '']"
+    :class="['input', type === 'date' ? 'input--date' : '', type === 'time' ? 'input--time' : '']"
     :id="name"
     :name="name"
     :type="type"
@@ -25,7 +25,6 @@
     :placeholder="placeholder"
     :autocomplete="autocomplete"
     :readonly="type === 'date' || type === 'time'"
-
   />
 </template>
 

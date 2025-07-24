@@ -1,5 +1,5 @@
 <template>
-  <div class="form-field__input form-field__select" :class="{ 'form-field__select--open': isOpen, 'form-field__select--disabled': props.disabled }" @click="!props.disabled && toggleDropdown()">
+  <div class="select" :class="{ 'select--open': isOpen, 'select--disabled': props.disabled }" @click="!props.disabled && toggleDropdown()">
           <button 
         type="button"
         class="select__button"
@@ -14,16 +14,14 @@
       </button>
       
       <div v-if="isOpen" class="select__dropdown">
-        <ul class="select__list">
-          <li 
-            v-for="option in options" 
-            :key="option.value"
-            class="select__option"
-            @click="selectOption(option)"
-          >
-            {{ option.label }}
-          </li>
-        </ul>
+        <div 
+          v-for="option in options" 
+          :key="option.value"
+          class="select__option"
+          @click="selectOption(option)"
+        >
+          {{ option.label }}
+        </div>
       </div>
   </div>
 </template>
@@ -72,7 +70,7 @@ const handleBlur = () => {
 
 const handleClickOutside = (event: Event) => {
   const target = event.target as HTMLElement
-  if (!target.closest('.form-field__select')) {
+  if (!target.closest('.select')) {
     isOpen.value = false
   }
 }
