@@ -1,14 +1,14 @@
 <template>
   <FormSection title="Scheduled">
     <FormField>
-      <FormInput type="date" v-model="startDate" name="startDate" autocomplete="off" required />
+      <FormInput type="date" v-model="startDate" name="startDate" placeholder="Start date" autocomplete="off" required />
     </FormField>
     <div class="form-row">
       <FormField>
-        <FormInput type="time" v-model="startTime" name="startTime" autocomplete="off" required />
+        <FormInput type="time" v-model="startTime" name="startTime" placeholder="Start time" autocomplete="off" required />
       </FormField>
       <FormField>
-        <FormInput type="time" v-model="endTime" name="endTime" autocomplete="off" required />
+        <FormInput type="time" v-model="endTime" name="endTime" placeholder="End time" autocomplete="off" required />
       </FormField>
     </div>
     <FormField>
