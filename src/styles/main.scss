@@ -1,1 +1,8 @@
-@use './base/reset'; 
+@use './utils/functions';
+@use './base/mixins';
+@use './base/variables';
+@use './base/reset';
+
+@use './components/form';
+@use './components/input';
+@use './components/select';

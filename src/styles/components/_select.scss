@@ -1,0 +1,96 @@
+@use '../utils/functions' as *;
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+
+.select {
+  height: rem-calc(48);
+  height: 100%;
+  width: 100%;
+  padding: rem-calc(14);
+  color: rgba($color-text, 0.5);
+  position: relative;
+  cursor: pointer;
+
+  &--open {
+    border-color: rgba($color-secondary, 0.5);
+
+    .select__arrow {
+      color: rgba($color-secondary, 0.5);
+      transform: rotate(180deg);
+    }
+  }
+  
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: inherit;
+  }
+  
+  &__value {
+    flex: 1;
+    text-align: left;
+    color: inherit;
+    font-size: rem-calc(12);
+    letter-spacing: 0.04em;
+    
+    &--selected {
+      color: $color-text;
+    }
+  }
+  
+  &__arrow {
+    width: rem-calc(20);
+    height: rem-calc(20);
+    transition: transform 0.2s;
+  }
+  
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: $color-bg;
+    border: 1px solid rgba($color-secondary, 0.2);
+    border-radius: rem-calc(4);
+    z-index: 10;
+    max-height: rem-calc(206);
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba($color-dark, 0.1);
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba($color-secondary, 0.3) transparent;
+    
+    &::-webkit-scrollbar {
+      width: rem-calc(4);
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba($color-secondary, 0.3);
+      border-radius: 2px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba($color-secondary, 0.5);
+    }
+  }
+  
+  &__option {
+    padding: rem-calc(8) rem-calc(12);
+    color: $color-text;
+    
+    &:hover {
+      background-color: rgba($color-secondary, 0.1);
+    }
+  }
+} 
