@@ -88,7 +88,7 @@ export class PipedriveApiService {
   async updateDeal(dealId: number, dealData: PipedriveDeal): Promise<PipedriveApiResponse<any>> {
     try {
       const response = await axios.put(`${this.apiUrl}/deals/${dealId}`, dealData, {
-        params: { api_token: this.apiToken }
+        headers: { 'Authorization': `Bearer ${this.apiToken}` }
       })
       return {
         success: true,
@@ -163,7 +163,7 @@ export class PipedriveApiService {
   async getCustomFields(): Promise<PipedriveApiResponse<any>> {
     try {
       const response = await axios.get(`${this.apiUrl}/dealFields`, {
-        params: { api_token: this.apiToken }
+        headers: { 'Authorization': `Bearer ${this.apiToken}` }
       })
       return {
         success: true,
@@ -180,14 +180,15 @@ export class PipedriveApiService {
 
   private async makeRequest<T>(endpoint: string, data?: any): Promise<AxiosResponse<T>> {
     const url = `${this.apiUrl}${endpoint}`
-    const params = {
-      api_token: this.apiToken
+    
+    const headers = {
+      'Authorization': `Bearer ${this.apiToken}`
     }
 
     if (data) {
-      return axios.post(url, data, { params })
+      return axios.post(url, data, { headers })
     } else {
-      return axios.get(url, { params })
+      return axios.get(url, { headers })
     }
   }
 

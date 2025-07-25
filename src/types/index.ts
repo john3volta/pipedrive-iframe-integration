@@ -66,4 +66,13 @@ export interface PipedriveApiResponse<T> {
 export interface PipedriveConfig {
   apiToken: string
   domain: string
+}
+
+export interface TokenResponse {
+  access_token: string
+  token_type: string
+  refresh_token: string
+  scope: string
+  expires_in: number
+  api_domain: string
 } 

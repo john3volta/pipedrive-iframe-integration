@@ -1,0 +1,31 @@
+.oauth-handler {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  padding: 2rem;
+
+  &__processing,
+  &__success,
+  &__error {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+  }
+
+  &__processing {
+    background: #f8f9fa;
+    border: 2px solid #007bff;
+  }
+
+  &__success {
+    background: #d4edda;
+    border: 2px solid #28a745;
+  }
+
+  &__error {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+  }
+} 
