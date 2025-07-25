@@ -32,7 +32,6 @@
 import { ref } from 'vue'
 import { jobTypes, jobSources, areaOptions, technicians } from '../data/formOptions'
 import { createPipedriveService } from '../services/pipedriveApi'
-import pipedriveService from '../services/pipedriveService'
 import type { JobFormData } from '../types'
 import ClientDetails from './ClientDetails.vue'
 import JobDetails from './JobDetails.vue'
@@ -139,19 +138,12 @@ const handleCreateJob = async () => {
   isSubmitting.value = true
 
   try {
-    const tokens = pipedriveService.getStoredTokens()
-    
-    if (!tokens.accessToken || !tokens.apiDomain) {
-      alert('Please install the app first to get access to Pipedrive')
-      return
-    }
-
-    const pipedriveApiService = createPipedriveService({
-      apiToken: tokens.accessToken,
-      domain: tokens.apiDomain.replace('.pipedrive.com', '')
+    const pipedriveService = createPipedriveService({
+      apiToken: import.meta.env.VITE_PIPEDRIVE_API_TOKEN || '',
+      domain: import.meta.env.VITE_PIPEDRIVE_DOMAIN || ''
     })
 
-    const result = await pipedriveApiService.submitJobForm(formData)
+    const result = await pipedriveService.submitJobForm(formData)
 
     if (result.success) {
       alert('Job created successfully in Pipedrive!')
