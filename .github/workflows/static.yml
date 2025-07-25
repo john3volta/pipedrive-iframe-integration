@@ -43,6 +43,9 @@ jobs:
       
       - name: Build
         run: npm run build
+        env:
+          VITE_PIPEDRIVE_API_TOKEN: ${{ secrets.VITE_PIPEDRIVE_API_TOKEN }}
+          VITE_PIPEDRIVE_DOMAIN: ${{ secrets.VITE_PIPEDRIVE_DOMAIN }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
